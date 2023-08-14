@@ -14,7 +14,7 @@
 - Clone the repository to your local machine
 
 ```bash
-$ git clone https://github.com/sebprest/tin-can-phone.git
+git clone https://github.com/sebprest/tin-can-phone.git
 ```
 
 
@@ -47,20 +47,18 @@ npm run build
 To encrypt a message, use the `encrypt` command:
 
 ```bash
-node tincanphone.js encrypt --sender alice --receiver bob --message "Hello, Bob!"
+node tincanphone.js encrypt --privateKey /path/to/your-private-key.priv.pem --receiver bob --message "Hello, Bob!"
 ```
 
-
-This will encrypt the message "Hello, Bob!" using Alice's public key and Bob's public key, and print the encrypted message to the console.
+This will encrypt the message "Hello, Bob!" using your private key and Bob's public key, and print the encrypted message to the console.
 
 To decrypt a message, use the `decrypt` command:
 
 ```bash
-node tincanphone.js decrypt --sender alice --receiver bob --message "encrypted message"
+node tincanphone.js decrypt --privateKey /path/to/your-private-key.priv.pem --sender alice --message "encrypted message"
 ```
 
-
-This will decrypt the encrypted message using Alice's private key and Bob's public key, and print the decrypted message to the console.
+This will decrypt the encrypted message using your private key and Alice's public key, and print the decrypted message to the console.
 
 To create a new user, use the `create-user` command:
 
@@ -68,8 +66,7 @@ To create a new user, use the `create-user` command:
 node tincanphone.js create-user --user alice
 ```
 
-
-This will generate a new public-private key pair for the user "alice" and store the keys in the user's home directory.
+This will generate a new public-private key pair for the user "alice" and store the keys in the current directory.
 
 ## 📝 License
 
