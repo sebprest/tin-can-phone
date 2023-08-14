@@ -10,7 +10,8 @@
     "dev": "ts-node src/main.ts",
     "test": "vitest",
     "test:ci": "vitest run",
-    "format:write": "prettier --write \"src/**/*.ts\""
+    "format:write": "prettier --write \"src/**/*.ts\"",
+    "format:ci": "prettier --check \"src/**/*.ts\""
   },
   "author": "Sebastian Preston (https://github.com/sebprest)",
   "license": "MIT",
