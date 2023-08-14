@@ -1,15 +1,16 @@
 {
   "name": "tin-can-phone",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI tool for sending and receiving messages over unsecured networks",
+  "private": true,
+  "main": "src/main.ts",
   "scripts": {
     "build": "webpack",
     "start": "node dist/main.js",
     "dev": "ts-node src/main.ts",
     "format:write": "prettier --write \"src/**/*.ts\""
   },
-  "author": "",
+  "author": "Sebastian Preston (https://github.com/sebprest)",
   "license": "MIT",
   "devDependencies": {
     "@types/node-forge": "^1.3.4",
