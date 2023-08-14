@@ -7,12 +7,12 @@ export const encryptCommand: CommandModule = {
   command: "encrypt",
   describe: "Encrypt a message",
   builder: {
-    sender: { type: "string", demandOption: true },
+    privateKey: { type: "string", demandOption: true },
     receiver: { type: "string", demandOption: true },
     message: { type: "string", demandOption: true },
   },
   handler: (argv: any) => {
-    console.log(encryptMessage(argv.sender, argv.receiver, argv.message));
+    console.log(encryptMessage(argv.privateKey, argv.receiver, argv.message));
   },
 };
 
@@ -20,12 +20,12 @@ export const decryptCommand: CommandModule = {
   command: "decrypt",
   describe: "Decrypt a message",
   builder: {
+    privateKey: { type: "string", demandOption: true },
     sender: { type: "string", demandOption: true },
-    receiver: { type: "string", demandOption: true },
     message: { type: "string", demandOption: true },
   },
   handler: (argv: any) => {
-    console.log(decryptMessage(argv.sender, argv.receiver, argv.message));
+    console.log(decryptMessage(argv.privateKey, argv.sender, argv.message));
   },
 };
 

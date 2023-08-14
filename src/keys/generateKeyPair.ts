@@ -1,6 +1,7 @@
 import forge from "node-forge";
 import path from "path";
 import fs from "fs";
+import { publicKeyPath, privateKeyPath } from "./utils";
 
 export function generateKeyPair(user: string): {
   publicKey: string;
@@ -14,10 +15,11 @@ export function generateKeyPair(user: string): {
   const privateKeyPem = forge.pki.privateKeyToPem(privateKey);
 
   // Save the keys to files
-  const keyPath = path.join(process.cwd(), "keys");
+  fs.writeFileSync(publicKeyPath(user), publicKeyPem);
+  fs.writeFileSync(privateKeyPath(user), privateKeyPem);
 
-  fs.writeFileSync(path.join(keyPath, `${user}.pub.pem`), publicKeyPem);
-  fs.writeFileSync(path.join(keyPath, `${user}.priv.pem`), privateKeyPem);
+  console.log(`Your private key was written to ${privateKeyPath(user)}`);
+  console.log("Keep it safe!");
 
   return { publicKey: publicKeyPem, privateKey: privateKeyPem };
 }

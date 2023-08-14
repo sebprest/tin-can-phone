@@ -1,9 +1,10 @@
 import forge from "node-forge";
-import { loadPublicKey, loadPrivateKey } from "../keys/keyManagement";
+import fs from "fs";
+import loadPublicKey from "../keys/loadPublicKey";
 import { AES_KEY_SIZE, IV_LENGTH } from "./consts";
 
 export function encryptMessage(
-  sender: string,
+  senderPrivateKeyPath: string,
   receiver: string,
   message: string,
 ): string {
@@ -20,7 +21,7 @@ export function encryptMessage(
   const tag = cipher.mode.tag.getBytes();
 
   // Load the private key of the sender
-  const senderPrivateKeyPem = loadPrivateKey(sender);
+  const senderPrivateKeyPem = fs.readFileSync(senderPrivateKeyPath, "utf8");
   const senderPrivateKey = forge.pki.privateKeyFromPem(senderPrivateKeyPem);
 
   // Sign the original message with the sender's private key

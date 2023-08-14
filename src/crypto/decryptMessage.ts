@@ -1,5 +1,6 @@
 import forge from "node-forge";
-import { loadPublicKey, loadPrivateKey } from "../keys/keyManagement";
+import fs from "fs";
+import loadPublicKey from "../keys/loadPublicKey";
 import {
   IV_LENGTH,
   TAG_LENGTH,
@@ -8,8 +9,8 @@ import {
 } from "./consts";
 
 export function decryptMessage(
+  receiverPrivateKeyPath: string,
   sender: string,
-  receiver: string,
   message: string,
 ): string {
   // Decode the combined encrypted message
@@ -23,7 +24,7 @@ export function decryptMessage(
   const encryptedMessage = buffer.getBytes();
 
   // Load the receiver's private key
-  const receiverPrivateKeyPem = loadPrivateKey(receiver);
+  const receiverPrivateKeyPem = fs.readFileSync(receiverPrivateKeyPath, "utf8");
   const receiverPrivateKey = forge.pki.privateKeyFromPem(receiverPrivateKeyPem);
 
   // Decrypt the symmetric key using the receiver's private key
